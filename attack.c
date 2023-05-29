@@ -60,6 +60,7 @@ int main()
   printf("bytes read in resp: %d\n", n_resp);
   // printf("resp: %b\n", ip_resp);
   char a[26] = "abcdefghijklmnopqrstuvwxyz";
+  unsigned short id = 0;
   while (1)
   {
     // Generate a random name with length 5
@@ -80,7 +81,8 @@ int main()
                each one with a different transaction ID. */
 
     // ... Students should add code here.
-    unsigned short id = 1000;
+
+    memcpy(ip_resp + 41, name, 5);
     memcpy(ip_resp + 64, name, 5);
     for (int i = 0; i < 500; i++)
     {
